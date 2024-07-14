@@ -1,14 +1,15 @@
-<%- include('./partials//header.ejs')%>
+<%- include('./partials/header.ejs') %>
 
 <h1>Home</h1>
-<p><%=homeContent%></p>
+<p><%= homeContent %></p>
 
-<% posts.forEach(function(post){%>
-    <h1><%=post.title%></h1>
-    <p><%=post.content.substring(0,100)+"..."%><a href="/posts/<%= post.title%>">Read More</a></p>
-<%}); %>
+<% if (posts && posts.length > 0) { %>
+  <% posts.forEach(function(post){ %>
+    <h1><%= post.name %></h1> <!-- Adjust to match your schema -->
+    <p><%= post.content.substring(0, 100) + "..." %><a href="/posts/<%= post._id %>">Read More</a></p>
+  <% }); %>
+<% } else { %>
+  <p>No posts found</p>
+<% } %>
 
-
-
- 
-<%- include('./partials/footer.ejs')%>
+<%- include('./partials/footer.ejs') %>
